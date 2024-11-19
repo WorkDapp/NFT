@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "hardhat": "^2.22.4"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "hardhat-gas-reporter": "^1.0.10"
+  }
+}

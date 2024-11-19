@@ -1,0 +1,60 @@
+**Compte pour le constructeur.**
+**Compte par véhicule (un portefeuille par VIN).**
+
+### PREREQUIS
+
+5. **Télécharger l'extension Metamask.**
+
+3. **Télécharger le fichier zip.**
+5. **Télécharger l'extension Metamask.**
+6. **Télécharger les dépendances du `package.json`.**
+
+### Instructions pour le terminal :
+
+1. **Télécharger les dépendances du `package.json`.**
+   - Aller dans le répertoire backend : `cd backend`
+   - Ouvrir un terminal
+   - Exécuter la commande : `npm install`
+   - Revenir au répertoire précédent : `cd ..`
+   
+2. - Aller dans le répertoire frontend2 : `cd frontend2`
+   - Exécuter la commande : `npm install`
+
+
+3. **Lancer le site web :**
+   - Aller dans le répertoire frontend2 : `cd frontend2`
+   - Exécuter : `npx next dev`
+   - Ouvrir `localhost:3000` dans un navigateur web.
+   - Laisser ce terminal ouvert.
+
+4. **Ouvrir un autre terminal :**
+   - Aller dans le répertoire backend : `cd backend`
+   - Exécuter : `npx hardhat node`
+   - Laisser ce terminal ouvert.
+
+5. **Ouvrir un autre terminal :**
+   - Aller dans le répertoire backend : `cd backend`
+
+### Pour déployer le smart contract :
+   - Exécuter : `npx hardhat ignition deploy ./ignition/modules/deploy.js --network localhost`
+
+### Pour enregistrer un véhicule sur la blockchain :
+   - Se connecter sur Metamask avec le compte de test 0 de Hardhat (compte constructeur).
+     - **Clé publique** : 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+     - **Clé privée** : 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+6. **Aller sur la page Enregistrer :**
+   - Compte du véhicule numéro 1 : account #1 de Hardhat
+     - **Clé publique** : 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+     - **Clé privée** : 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+
+7. **Entrer l'adresse publique du véhicule et son VIN.**
+
+8. **Aller dans le terminal :**
+   - Aller dans le répertoire Python : `cd Python`
+   - Lancer le script de génération de kilométrage avec la commande : `python3 script.py`
+
+### Pour voir le kilométrage d'un véhicule :
+   - Aller sur la page Rechercher.
+   - Entrer le VIN correspondant.
+   - Pas besoin de se connecter à un compte Metamask.
