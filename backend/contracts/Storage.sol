@@ -1,56 +1,36 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-error VehiculeStore();
-error NoVehicule();
+contract NFT is ERC721, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter public currentTokenId;
 
-contract Storage is Ownable {
-    
-    struct VehicleData {
-        uint256 mileage;
-        uint256 timestamp;
+    string public baseTokenURI;
+
+    // Constructor
+    constructor() ERC721("PING20", "NFT") Ownable(msg.sender) {
+        baseTokenURI = "";
     }
 
-    mapping(bytes32 => address) private vinToAddress;
-    mapping(address => VehicleData[]) private vehicleData;
-    
-    constructor() Ownable(msg.sender) {
-
+    // Mint a new NFT
+    function mintNFT() public returns (uint256) {
+        currentTokenId.increment(); // Increment token ID counter
+        uint256 newItemId = currentTokenId.current();
+        _safeMint(msg.sender, newItemId); // Mint the new NFT
+        return newItemId;
     }
 
-    function storeVehicule(
-        string memory _vin,
-        address addressVehicule
-    ) public onlyOwner {
-
-        bytes32 hashVin = keccak256(abi.encodePacked(_vin));
-        if (vinToAddress[hashVin] != address(0)){
-            revert VehiculeStore();
-        }
-        vinToAddress[hashVin] = addressVehicule;
+    // Override the baseURI function
+    function _baseURI() internal view virtual override returns (string memory) {
+        return baseTokenURI;
     }
 
-    function storeData(uint256 _mileage) external {
-        vehicleData[msg.sender].push(VehicleData(_mileage, block.timestamp));
-    }
-
-    function getMileageByVIN(string memory _vin) public view returns (VehicleData[] memory) {
-
-        bytes32 hashVin = keccak256(abi.encodePacked(_vin));
-        address vehicleAddress = vinToAddress[hashVin];
-
-        if (vehicleAddress == address(0)){
-            revert NoVehicule();
-        }
-        return vehicleData[vehicleAddress];
-    }
-    function getVehicleAddressByVINHash(bytes32 hashVin) public view returns (address) {
-        return vinToAddress[hashVin];
-    }
-
-    function getVehicleDataByAddress(address vehicleAddress) public view returns (VehicleData[] memory) {
-        return vehicleData[vehicleAddress];
+    // Set the base URI for all NFTs
+    function setBaseTokenURI(string memory _baseTokenURI) public onlyOwner {
+        baseTokenURI = _baseTokenURI;
     }
 }
