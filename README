@@ -3,7 +3,7 @@
 ## Prérequis
 - Node.js version 16 ou supérieure
 - Yarn ou npm
--WSL2 sur windows (plus pratique).
+- WSL2 sur windows (plus pratique).
 
 ## Installation
 1. Clonez le dépôt :
