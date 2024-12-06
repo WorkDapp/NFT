@@ -1,0 +1,19 @@
+# NFT
+
+## Prérequis
+- Node.js version 16 ou supérieure
+- Yarn ou npm
+-WSL2 sur windows (plus pratique).
+
+## Installation
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/<ton-utilisateur>/<ton-depot>.git
+   cd <nom_du_projet>
+
+## Installer les dépendances :
+yarn install ou npm install
+
+## Lancer l'application :
+yarn dev ou npm run dev (port 3000).
+
